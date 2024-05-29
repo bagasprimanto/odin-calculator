@@ -91,10 +91,22 @@ function updateDisplay(e) {
     }
 
     if (e.target.className === "decimal") {
-        if(result) {
-            screen.textContent = result;
-        } else {
-            screen.textContent = 0;
+        let display = screen.textContent;
+        let button = e.target;
+        
+        if(!display.includes('.')) {
+            //If still zero
+            if(screen.textContent === '0') {
+                screen.textContent += ".";
+            } else {
+                if(screen.textContent === '0' || moreThanOneOperator) {
+                    screen.textContent = '0.';
+                    moreThanOneOperator = false;
+                } else {
+                    screen.textContent += button.textContent;
+                }
+            }
+
         }
     }
 
