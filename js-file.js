@@ -34,7 +34,14 @@ function initializeEventListeners() {
 
         if(button.className === "equals") {
             button.addEventListener("click", (e) => {
-                handleEquals();
+                resolveOperation();
+                updateDisplay(e);
+                handleEqualsPressed();
+            });
+        }
+
+        if(button.className === "decimal") {
+            button.addEventListener("click", (e) => {
                 updateDisplay(e);
             });
         }
@@ -77,6 +84,15 @@ function updateDisplay(e) {
     if (e.target.className === "equals") {
         if(result) {
             screen.textContent = result;
+            moreThanOneOperator = true;
+        } else {
+            screen.textContent = 0;
+        }
+    }
+
+    if (e.target.className === "decimal") {
+        if(result) {
+            screen.textContent = result;
         } else {
             screen.textContent = 0;
         }
@@ -91,13 +107,13 @@ function handleOperator(e) {
         firstNumber = screen.textContent;
     } else {
         //Resolve the previous operator
-        handleEquals();
+        resolveOperation();
         operator = e.target.textContent;
         firstNumber = result;
     }
 }
 
-function handleEquals() {
+function resolveOperation() {
     secondNumber = screen.textContent;
     result = operate(firstNumber, secondNumber, operator);
     if(result >= Infinity) {
@@ -107,6 +123,10 @@ function handleEquals() {
     } else {
         operator = null;
     }
+}
+
+function handleEqualsPressed() {
+    result = 0;
 }
 
 function checkIfNumbers(a,b) {
