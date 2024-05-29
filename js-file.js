@@ -1,4 +1,34 @@
 const MAX_DECIMALS = 15;
+const buttons = document.querySelectorAll('button');
+const buttonsArray = Array.from(buttons);
+const screen = document.querySelector("#screen");
+
+function initializeEventListeners() {
+
+    buttonsArray.forEach((button) => {
+        if(button.className === "number") {
+            button.addEventListener("click", () => {
+                if(screen.textContent === '0') {
+                    screen.textContent = button.textContent;
+                } else {
+                    screen.textContent += button.textContent;
+                }
+            });
+        }
+
+        if(button.className === "clear") {
+            button.addEventListener("click", () => {
+                screen.textContent = '0';
+            });
+        }
+
+        if(button.className === "operator") {
+            button.addEventListener("click", () => {
+                screen.textContent = '0';
+            });
+        }
+    });
+}
 
 function checkIfNumbers(a,b) {
     return (typeof(+a) === 'number' && typeof(+b) === 'number');
@@ -24,20 +54,22 @@ function operate(a,b,op) {
     if(checkIfNumbers(a,b)) {
         switch (op) {
             case '+':
-                add(a,b);
-                break;
+                return add(a,b);
             case '-':
-                subtract(a,b);
-                break;
+                return subtract(a,b);
             case '*':
-                multiply(a,b);
-                break;
+                return multiply(a,b);
             case '/':
-                divide(a,b);
-                break;
+                return divide(a,b);
         }   
     }
 }
+
+let firstNumber;
+let operator;
+let secondNumber;
+
+initializeEventListeners();
 
 // console.log("Add");
 // console.log(add(1,2));
@@ -64,6 +96,3 @@ function operate(a,b,op) {
 // console.log(divide(7,3));
 // console.log(add(divide(3,7),divide(7,3)));
 
-let firstNumber;
-let operator;
-let secondNumber;
