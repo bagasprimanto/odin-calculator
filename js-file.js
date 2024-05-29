@@ -94,7 +94,6 @@ function updateDisplay(e) {
         let display = screen.textContent;
         let button = e.target;
         
-        if(!display.includes('.')) {
             //If still zero
             if(screen.textContent === '0') {
                 screen.textContent += ".";
@@ -103,11 +102,11 @@ function updateDisplay(e) {
                     screen.textContent = '0.';
                     moreThanOneOperator = false;
                 } else {
-                    screen.textContent += button.textContent;
+                    if(!display.includes('.')) {
+                        screen.textContent += button.textContent;
+                    }
                 }
             }
-
-        }
     }
 
     screen.textContent = screen.textContent.substring(0, 10);

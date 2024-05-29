@@ -23,6 +23,8 @@ button {
     height: 16px;
     padding: 18px;
     font-size: 18px;
+    border: none;
+    border-radius: 5px;
 }
 
 .calculator-container {
@@ -57,7 +59,22 @@ button {
     margin-left: auto;
 }
 
-button#zero {
-    margin-right: auto;
-    flex: 1;
+button.operator {
+    background-color: rgb(176, 176, 239);
+}
+
+button.equals {
+    background-color: orange;
+}
+
+button.clear {
+    background-color: rgb(248, 184, 184);
+}
+
+button.number {
+    background-color: rgb(226, 226, 226)
+}
+
+button:active {
+    background-color: rgb(171, 144, 144);
 }
