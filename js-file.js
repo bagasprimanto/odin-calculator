@@ -45,6 +45,12 @@ function initializeEventListeners() {
                 updateDisplay(e);
             });
         }
+
+        if(button.className === "delete") {
+            button.addEventListener("click", (e) => {
+                updateDisplay(e);
+            })
+        }
     });
 }
 
@@ -94,19 +100,34 @@ function updateDisplay(e) {
         let display = screen.textContent;
         let button = e.target;
         
-            //If still zero
-            if(screen.textContent === '0') {
-                screen.textContent += ".";
+        //If still zero
+        if(screen.textContent === '0') {
+            screen.textContent += ".";
+        } else {
+            if(screen.textContent === '0' || moreThanOneOperator) {
+                screen.textContent = '0.';
+                moreThanOneOperator = false;
             } else {
-                if(screen.textContent === '0' || moreThanOneOperator) {
-                    screen.textContent = '0.';
-                    moreThanOneOperator = false;
-                } else {
-                    if(!display.includes('.')) {
-                        screen.textContent += button.textContent;
-                    }
+                if(!display.includes('.')) {
+                    screen.textContent += button.textContent;
                 }
             }
+        }
+    }
+
+    if (e.target.className === "delete") {
+        if(screen.textContent === '0') {
+            screen.textContent = "0";
+        } else {
+            if(!moreThanOneOperator) {
+                let display = screen.textContent;
+                if(!display.slice(0, -1)) {
+                    screen.textContent = 0;
+                } else {
+                    screen.textContent = display.slice(0, -1);
+                }
+            }
+        }
     }
 
     screen.textContent = screen.textContent.substring(0, 10);
