@@ -75,7 +75,11 @@ function updateDisplay(e) {
     }
 
     if (e.target.className === "equals") {
-        screen.textContent = result;
+        if(result) {
+            screen.textContent = result;
+        } else {
+            screen.textContent = 0;
+        }
     }
 
     screen.textContent = screen.textContent.substring(0, 10);
@@ -96,7 +100,13 @@ function handleOperator(e) {
 function handleEquals() {
     secondNumber = screen.textContent;
     result = operate(firstNumber, secondNumber, operator);
-    operator = null;
+    if(result >= Infinity) {
+        alert("Error, division by 0 is not allowed");
+        resetVariables();
+        screen.textContent = 0;
+    } else {
+        operator = null;
+    }
 }
 
 function checkIfNumbers(a,b) {
