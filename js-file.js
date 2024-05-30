@@ -83,6 +83,7 @@ function updateDisplay(e) {
             screen.textContent = result;
             moreThanOneOperator = true;
         } else {
+            console.log("I'm here");
             screen.textContent = 0;
         }
     }
@@ -158,7 +159,7 @@ function resolveOperation() {
 }
 
 function handleEqualsPressed() {
-    result = 0;
+    result = 0; //Reset result to 0 so that when we press an operator button, the screen is updated to zero
 }
 
 function checkIfNumbers(a,b) {
