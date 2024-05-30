@@ -83,7 +83,6 @@ function updateDisplay(e) {
             screen.textContent = result;
             moreThanOneOperator = true;
         } else {
-            console.log("I'm here");
             screen.textContent = 0;
         }
     }
